@@ -1,0 +1,48 @@
+{
+  "name": "daydo-backend",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/main.js",
+    "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.test.json",
+    "test": "node --import tsx --test tests/unit/*.test.ts",
+    "db:up": "docker compose up -d --wait",
+    "db:down": "docker compose down",
+    "db:migrate": "npm run build && node dist/migrate.js",
+    "test:api": "playwright test --config playwright.api.config.ts",
+    "test:e2e": "PLAYWRIGHT_BROWSERS_PATH=\"$PWD/.playwright\" playwright test",
+    "test:install": "PLAYWRIGHT_BROWSERS_PATH=\"$PWD/.playwright\" playwright install chromium"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.2.6",
+    "@nestjs/core": "^11.2.6",
+    "@nestjs/platform-express": "^11.2.6",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^18.0.4",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "mysql2": "^3.24.5",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.51.0",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.0.0",
+    "eslint": "^9.0.0",
+    "node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "@eslint/js": "^9.39.5",
+    "@typescript-eslint/parser": "^8.70.1",
+    "@typescript-eslint/eslint-plugin": "^8.70.1"
+  }
+}
